@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Plan Result - MealMatic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('{{ url_for("static", filename="images/pexels-photo-1640775.jpg") }}');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+             
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            background-color: black;
+            padding: 1rem 2rem;
+        }
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #ecf0f1 !important;
+            font-size: 1.5rem;
+        }
+        
+        /* Container Styling */
+        .container {
+            margin-top: 120px;
+            text-align: center;
+            color: #34495e;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color:white;
+            font-family: 'Josefin Sans', sans-serif;
+            
+        }
+        
+        /* Meal Plan Result Box */
+        pre {
+            background-color:black;
+            opacity: 0.7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-x: auto;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.1rem;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        /* Button Styling */
+        .btn-primary {
+            background-color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            background-color: black;
+            color: #ffffff;
+
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: black;
+            color: #ecf0f1;
+            font-size: 1rem;
+            padding: 1.5rem 0;
+        }
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+            .btn-primary {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">MealMatic</a>
+</nav>
+
+<!-- Result Container -->
+<div class="container">
+    <h2>Your Generated Meal Plan</h2>
+    <pre id="meal-plan">{{ result }}</pre>
+    <a href="/" class="btn btn-primary mt-4">Generate Another Meal Plan</a>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5">
+    <p>&copy; 2024 MealMatic. All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // JavaScript to remove asterisks from the meal plan content
+    document.addEventListener("DOMContentLoaded", function() {
+        const mealPlanElement = document.getElementById("meal-plan");
+        mealPlanElement.innerHTML = mealPlanElement.innerHTML.replace(/\*/g, '');
+    });
+</script>
+</body>
+</html>

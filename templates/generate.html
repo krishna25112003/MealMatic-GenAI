@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Meal Plan - MealMatic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        /* Your existing styles */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('{{ url_for("static", filename="images/pexels-photo-1640775.jpg") }}') no-repeat center center fixed; 
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: white;
+            justify-content: center;
+            animation: fadeIn 1s;
+        }
+        .navbar-brand {
+            text-align: center;
+            flex-grow: 1;
+            margin-right: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            flex: 1;
+            max-width: 1000px;
+        }
+        .rectangular-box {
+            width: 50%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.8);
+            animation: slideInUp 1s;
+        }
+        .content {
+            position: relative;
+            padding: 20px;
+            color: white;
+            z-index: 1;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        input, select {
+            width: 90%;
+            max-width: 420px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            animation: bounce 0.5s;
+            outline: none;
+        }
+        .submit-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: black;
+        }
+        .nutritional-news {
+            width: 50%;
+            padding: 20px;
+            color: white;
+            animation: fadeInLeft 1s;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-brand" href="#">MealMatic</a>
+</nav>
+
+<!-- Container for Input Box and Nutritional News -->
+<div class="container">
+    <!-- Nutritional News Section -->
+    <div class="nutritional-news">
+        <h3>Nutritional Tips</h3>
+        <p id="news-text"></p>
+    </div>
+
+    <!-- Rectangular Box with Gradient Overlay -->
+    <div class="rectangular-box">
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h2 class="animate__animated animate__fadeInDown">Generate Your Meal Plan</h2>
+            <form id="mealPlanForm" class="input-container" method="POST" action="/generate">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="number" name="age" placeholder="Age" required>
+                <input type="number" name="height" placeholder="Height (cm)" required>
+                <input type="number" name="weight" placeholder="Weight (kg)" required>
+                <select name="preference" required>
+                    <option value="" disabled selected>Dietary Preference</option>
+                    <option value="veg">Vegetarian</option>
+                    <option value="non-veg">Non-Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="jain">Jain</option>
+                </select>
+                <select name="cuisine" required>
+                    <option value="" disabled selected>Cuisine Preference</option>
+                    <option value="italian">Italian</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="south-indian">South Indian</option>
+                    <option value="north-indian">North Indian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="thai">Thai</option>
+                </select>
+                <button type="submit" class="submit-button animate__animated animate__fadeInUp">Generate Plan</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center p-3 mt-5">
+    <p>&copy; 2024 MealMatic. All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Array of General Nutritional News
+    const nutritionalNews = [
+        "Eating more fruits and vegetables is essential for improving overall health and well-being. These foods are rich in essential vitamins, minerals, and antioxidants, which help protect the body from chronic diseases like heart disease, diabetes, and cancer. Fruits and vegetables are also high in dietary fiber, aiding digestion and promoting a healthy gut. Incorporating a variety of colorful produce into your meals not only enhances flavor and texture but also ensures a wide range of nutrients. Aim to fill half your plate with fruits and vegetables at each meal to maximize their health benefits and support a balanced diet",
+        "Hydration is crucial for maintaining optimal body function. Water is essential for various physiological processes, including digestion, circulation, and temperature regulation. It aids in nutrient transport and waste removal, ensuring that cells function efficiently. Dehydration can lead to fatigue, dizziness, and impaired cognitive function, highlighting the importance of regular fluid intake. It is recommended to drink at least eight 8-ounce glasses of water daily, but individual needs may vary based on activity level, climate, and overall health. Including water-rich foods like fruits and vegetables in your diet can also help maintain hydration levels throughout the day.",
+        "Protein is vital for muscle recovery and growth, making it an essential component of any balanced diet, especially for those who engage in regular physical activity. Composed of amino acids, proteins play a key role in building and repairing tissues, including muscles, skin, and organs. Consuming adequate protein post-workout aids in muscle repair and promotes the synthesis of new muscle tissue. High-quality protein sources include lean meats, dairy, legumes, and plant-based options such as quinoa and tofu. Including protein in each meal can help maintain energy levels, support metabolism, and contribute to overall health and well-being.",
+        "Incorporating healthy fats into your diet is beneficial for heart health and overall well-being. Unlike saturated and trans fats, which can raise bad cholesterol levels and increase heart disease risk, unsaturated fats—found in foods like avocados, nuts, seeds, and olive oil—support cardiovascular health. These healthy fats help reduce inflammation and improve cholesterol levels, making them a crucial part of a balanced diet. Additionally, healthy fats are essential for nutrient absorption, hormone production, and brain health. Aim to replace unhealthy fats with sources of healthy fats to enhance your meals while promoting long-term health.",
+        "Whole grains are an essential part of a healthy diet, providing vital nutrients and dietary fiber that contribute to overall health. Unlike refined grains, whole grains retain their bran, germ, and endosperm, ensuring a higher nutritional value. Foods like brown rice, quinoa, oats, and whole wheat bread are rich in fiber, which aids digestion, promotes satiety, and helps regulate blood sugar levels. Additionally, whole grains are packed with vitamins and minerals, including B vitamins, iron, magnesium, and antioxidants. Regular consumption of whole grains can lower the risk of chronic diseases such as heart disease, diabetes, and obesity, making them an important dietary choice."
+    ];
+
+    function getRandomNews() {
+        const randomIndex = Math.floor(Math.random() * nutritionalNews.length);
+        document.getElementById("news-text").textContent = nutritionalNews[randomIndex];
+    }
+
+    // Call the function to set initial news info
+    getRandomNews();
+</script>
+</body>
+</html>
