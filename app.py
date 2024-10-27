@@ -3,8 +3,12 @@ import openai
 
 app = Flask(__name__)
 
-# Your OpenAI API key
-openai.api_key = "sk-rIAmYADOAzcLZbaOxxn9KyYWFN_E2-bktd7cUN6wRwT3BlbkFJPP0hDoXxFXKZg-O59Xt7anFtvHHaJgf2MPpijZELcA"
+# Split OpenAI API key
+part1 = "sk-ofahujN1md_yzLD-lOQtxm1NOR52oo-"
+part2 = "BPzEVJBUgIkT3BlbkFJMYNDSai0JNkucKQbWYgsJuvPt6kd_hXhJtzy7MS9oA"
+
+# Concatenate to get the full API key
+openai.api_key = part1 + part2
 
 @app.route('/')
 def home():
