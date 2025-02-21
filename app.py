@@ -4,9 +4,8 @@ import openai
 app = Flask(__name__)
 
 # Split OpenAI API key
-part1 = "sk-ofahujN1md_yzLD-lOQtxm1NOR52oo-"
-part2 = "BPzEVJBUgIkT3BlbkFJMYNDSai0JNkucKQbWYgsJuvPt6kd_hXhJtzy7MS9oA"
-
+part1 = "sk-proj-sYZDvt8xRN67yztQ5CuxXWXDll-BxDGa7rHkGWcNhsLLijf9rKkfxDNCnXeEYkmjNEPcStBCzVT3BlbkFJV2suua"  
+part2 = "7LrY58vVkZpnKhozA7bNDnuh3agkJ2OLaEsXxhvjNkEbxQB67wISYgzVVwX7azoa52QA"
 # Concatenate to get the full API key
 openai.api_key = part1 + part2
 
