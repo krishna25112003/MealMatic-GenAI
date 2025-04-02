@@ -57,6 +57,9 @@ MealMatic/
    ```
 5. Open your browser and go to `http://127.0.0.1:5000/`.
 ![Screenshot 2024-11-10 182732](https://github.com/user-attachments/assets/0391d4e7-08bd-499a-b9ea-d528d3ed9ab0)
+![image](https://github.com/user-attachments/assets/90d83add-f426-4d48-8a8d-800465473961)
+![image](https://github.com/user-attachments/assets/ddbe7443-bf75-4b84-8dd6-9863428c8eda)
+
 
 ## Technologies Used
 - **Frontend:** HTML, CSS
