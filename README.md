@@ -1,4 +1,4 @@
-# MealMatic
+![image](https://github.com/user-attachments/assets/9576343b-9b80-49e6-a9a7-066c8e74f39b)# MealMatic
 
 ## Overview
 MealMatic is a web-based meal planning application that provides personalized meal plans based on user input. The application allows users to enter their dietary preferences and health details to generate meal recommendations with nutritional information.
@@ -56,9 +56,19 @@ MealMatic/
    python app.py
    ```
 5. Open your browser and go to `http://127.0.0.1:5000/`.
+
+6. ##Screenshots
 ![Screenshot 2024-11-10 182732](https://github.com/user-attachments/assets/0391d4e7-08bd-499a-b9ea-d528d3ed9ab0)
 ![image](https://github.com/user-attachments/assets/90d83add-f426-4d48-8a8d-800465473961)
 ![image](https://github.com/user-attachments/assets/ddbe7443-bf75-4b84-8dd6-9863428c8eda)
+
+7.##Demo Video
+
+
+
+https://github.com/user-attachments/assets/e6765ab1-52fa-43df-a7d5-e06b31551d47
+
+
 
 
 ## Technologies Used
